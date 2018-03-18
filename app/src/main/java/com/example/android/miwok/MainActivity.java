@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         phrases.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Create a new intent to open the {@link PhrasesActivity}
+                // Create a new intent to open the {@link PhrasesActivity   }
                 Intent phrasesIntent = new Intent(MainActivity.this, PhrasesActivity.class);
 
                 // Start the new activity
