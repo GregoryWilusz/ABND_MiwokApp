@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -44,6 +45,15 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         TextView defaultTextView = (TextView) listItemView.findViewById(R.id.default_text_view);
         defaultTextView.setText(currentWordsPair.getDefaultTranslation());
+
+        ImageView imageWordView = (ImageView) listItemView.findViewById(R.id.image);
+
+        if (currentWordsPair.hasImage()) {
+            imageWordView.setImageResource(currentWordsPair.getResourceId());
+            imageWordView.setVisibility(View.VISIBLE); // to make sure the view is visible
+        } else {
+            imageWordView.setVisibility(View.GONE); // GONE to completely hide an image (with took no extra empty space)
+        }
 
         return listItemView;
     }
