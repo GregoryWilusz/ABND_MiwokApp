@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,9 +21,11 @@ import java.util.ArrayList;
 
 public class WordAdapter extends ArrayAdapter<Word> {
 
+    private int mColorResourceId;
 
-    public WordAdapter(@NonNull Context context, ArrayList<Word> words) {
+    public WordAdapter(@NonNull Context context, ArrayList<Word> words, int colorResourceId) {
         super(context,0, words);
+        mColorResourceId = colorResourceId;
     }
 
     @NonNull
@@ -33,6 +37,12 @@ public class WordAdapter extends ArrayAdapter<Word> {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
         }
+
+        View linearLayoutView = listItemView.findViewById(R.id.linear_layout_background);
+        // Find a color that the resource ID maps to
+        int color = ContextCompat.getColor(getContext(), mColorResourceId);
+        // Set the background color of the linearLayoutView
+        linearLayoutView.setBackgroundColor(color);
 
         // Get the {@link Word} object located at this position in the list
         Word currentWordsPair = getItem(position);
